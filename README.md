@@ -2,118 +2,67 @@
 Batch render script to render multiple file in background
 
 
-# 🌀 Blender Background Rendering – Multi-Scene Animation Automation
+Overview
 
-This repository provides step-by-step instructions to render multiple **animations** from different scenes and `.blend` files using **Blender's background mode** on **Windows**, while preserving internal Blender settings for output path, format, and frame range.
+This project contains a Python script that allows you to batch render multiple Blender files and scenes in sequence using Blender’s command-line interface. It’s a simple and effective way to automate rendering without having to open Blender manually for each file.
+📂 Project Structure
 
----
+/project-folder
+│
+├── render_batch.py          # Python script to batch render files
+├── render_batch_improved.py # Enhanced version with custom output paths and error handling
+└── README.md                # This file
 
-## 📦 Requirements
+⚙️ Requirements
 
-- ✅ Blender installed (e.g. `C:\Program Files\Blender Foundation\Blender 4.1\blender.exe`)
-- ✅ `.blend` files with:
-  - Scene names configured
-  - Output path and format set in Blender’s **Output Properties**
-  - Frame start/end set in **Output Properties**
+    Blender 4.3 or compatible version
 
----
+    Basic Python (no external libraries required)
 
-## 📁 Example Folder Structure
+    Windows Command Prompt (or any terminal that can run Blender CLI)
 
-D:
-├── Projects
-│ ├── MyProject1
-│ │ └── project1.blend
-│ └── MyProject2
-│ └── project2.blend
-├── RenderScripts
-│ └── render_all.bat
+🚀 How to Run
 
-yaml
-Copy
-Edit
+    Prepare the script:
 
----
+        Edit the files_to_render list to include the absolute paths of your .blend files and the specific scene names you want to render.
 
-## 🛠️ Blender Scene Setup
+        Define your desired output directory in output_base_dir.
 
-Inside each `.blend` file:
+    Run the script from the Command Prompt:
 
-1. Go to the **Output Properties** tab:
-   - Set output path (e.g. `D:\Renders\Scene1\`)
-   - Set file format (PNG, FFmpeg, etc.)
-   - Set frame start and end (e.g. 1 → 250)
-2. Save the file.
-3. Repeat for each scene you want to render.
+    "C:\Program Files\Blender Foundation\Blender 4.3\blender.exe" -b --python "D:\Path\To\Your\render_batch.py"
 
----
+        -b: Runs Blender in background mode (no GUI)
 
-## 🖥️ Render from Command Line (Manual)
+        --python: Runs the provided Python script inside Blender
 
-Open **Command Prompt** and run the following:
+    Optional:
+    Create a .bat file for quick execution.
 
-```cmd
-"C:\Program Files\Blender Foundation\Blender 4.1\blender.exe" -b "D:\Projects\MyProject1\project1.blend" -S "Scene1" -a
-To render multiple scenes:
+✅ Features
 
-cmd
-Copy
-Edit
-"C:\Program Files\Blender Foundation\Blender 4.1\blender.exe" -b "D:\Projects\MyProject1\project1.blend" -S "Scene1" -a ^
-&& "C:\Program Files\Blender Foundation\Blender 4.1\blender.exe" -b "D:\Projects\MyProject1\project1.blend" -S "Scene2" -a ^
-&& "C:\Program Files\Blender Foundation\Blender 4.1\blender.exe" -b "D:\Projects\MyProject2\project2.blend" -S "Scene3" -a
-📄 Automate with a .bat File
-Open Notepad
+    Render multiple .blend files in sequence.
 
-Paste the following:
+    Supports selecting specific scenes per file.
 
-bat
-Copy
-Edit
-@echo off
-set BLENDER="C:\Program Files\Blender Foundation\Blender 4.1\blender.exe"
+    Custom output directories for each file/scene.
 
-echo Starting Scene1 from project1.blend...
-%BLENDER% -b "D:\Projects\MyProject1\project1.blend" -S "Scene1" -a
+    Automatic folder creation for renders.
 
-echo Starting Scene2 from project1.blend...
-%BLENDER% -b "D:\Projects\MyProject1\project1.blend" -S "Scene2" -a
+    Error handling if files or scenes are missing.
 
-echo Starting Scene3 from project2.blend...
-%BLENDER% -b "D:\Projects\MyProject2\project2.blend" -S "Scene3" -a
+    Progress logging to the terminal.
 
-echo All scenes rendered.
-pause
-Save it as:
-D:\RenderScripts\render_all.bat
+📌 Notes
 
-📌 Important: Select "Save as type: All Files" and not .txt, and use .bat as extension.
+    You must provide absolute paths for both .blend files and the Python script.
 
-Double-click render_all.bat to run the render batch job.
+    Ensure that your render output settings (file format, resolution, etc.) are correctly configured inside each .blend file.
 
-🧪 Notes & Troubleshooting
--b: Run Blender in background (no GUI)
+    The script assumes you are rendering animations. If you want to render still frames, the script can easily be adapted.
 
--S SceneName: Choose the scene to render
+✨ Credits
 
--a: Render animation using Blender's saved settings
-
-Make sure the scene name matches exactly as written in Blender
-
-Don’t use -F, -o, -f etc. unless you want to override settings in the .blend file
-
-🧠 Tips
-You can edit the .bat to log output to a file:
-
-bat
-Copy
-Edit
-%BLENDER% -b "file.blend" -S "Scene" -a >> render_log.txt 2>&1
-To render in parallel (advanced), use start in the .bat:
-
-bat
-Copy
-Edit
-start "" %BLENDER% -b "file.blend" -S "Scene" -a
-📜 License
-MIT License
+Script developed with support from ChatGPT.
+Maintained by [Your Name].
