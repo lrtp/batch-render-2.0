@@ -1,3 +1,6 @@
+USE THIS 
+--
+
 @echo off
 REM Define Blender executable path
 set BLENDER="C:\Program Files\Blender Foundation\Blender 4.1\blender.exe"
@@ -14,6 +17,11 @@ REM Render Scene3 from a different file
 REM Notify that all scenes have been rendered
 echo All scenes rendered.
 pause
+
+
+--
+
+
 ✅ What this does:
 Uses -b to run Blender in background mode
 
