@@ -1,0 +1,17 @@
+Sostituisci questa parte:
+
+python
+Copy
+Edit
+scenes_to_render = [
+    (r"C:\TUO\PERCORSO\file1.blend", "Scene 1"),
+    ...
+]
+con i tuoi veri percorsi e nomi scena, ad esempio:
+
+python
+Copy
+Edit
+scenes_to_render = [
+    (r"C:\Users\alberto.palazzo\Desktop\Ercolani Video 3d.blend", "Scene 1"),
+    (r"C:\Users\alberto.palazzo\Desktop\Ercolani Video 3d.blend", "Scene 2"),
